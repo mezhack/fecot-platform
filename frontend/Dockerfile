@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copia só os manifests primeiro pra cachear o npm install
 COPY package.json package-lock.json* ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund --legacy-peer-deps
 
 
 # ----- Stage 2: builder -----
