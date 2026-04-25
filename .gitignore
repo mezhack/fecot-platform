@@ -1,0 +1,25 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Envs
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Dependências (gerenciadas por cada subprojeto)
+node_modules/
+.venv/
+venv/
+__pycache__/
+
+# Build
+.next/
+dist/
+build/
