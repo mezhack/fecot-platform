@@ -15,6 +15,8 @@ const nextConfig = {
       { protocol: "https", hostname: "hebbkx1anhila5yf.public.blob.vercel-storage.com" },
     ],
   },
+  // Útil para desacoplar da URL pública nas builds.
+  output: "standalone",
 }
 
 export default nextConfig

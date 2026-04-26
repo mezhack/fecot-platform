@@ -231,6 +231,21 @@ Duas URLs com propósitos distintos:
 
 ---
 
+## Testes
+
+O backend tem uma suíte com **105 testes** cobrindo todas as regras de negócio críticas:
+autenticação, autorização por role, CRUD, fluxo de aprovação de graduação, e upload de avatar.
+
+```bash
+cd backend
+pip install -e ".[dev]"
+pytest
+```
+
+Documentação completa em [`backend/tests/README.md`](./backend/tests/README.md).
+
+---
+
 ## Deploy em produção
 
 Veja [`DEPLOY.md`](./DEPLOY.md) para o guia completo de deploy na Hostinger VPS.

@@ -46,6 +46,22 @@ def _validate_manager(db: Session, manager_id: int) -> Athlete:
     return manager
 
 
+def _check_can_manage_academy(academy: Academy, current: Athlete) -> None:
+    """Garante que o usuário atual pode gerenciar esta academia específica.
+
+    - Admin: sempre pode
+    - Manager: só se for o manager DESTA academia
+    - Outros: bloqueado (o decorator require_manager_or_admin já filtra teacher/athlete)
+    """
+    if current.role == AthleteRole.admin:
+        return
+    if academy.manager_id != current.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Você só pode gerenciar academias das quais é responsável",
+        )
+
+
 def _check_unique_cnpj(db: Session, cnpj: str | None, exclude_id: int | None = None) -> None:
     if not cnpj:
         return
@@ -164,10 +180,19 @@ def create_academy(
 # UPDATE
 # --------------------------------------------------------------
 
-def _update_academy(academy_id: int, payload: AcademyUpdate, db: Session) -> AcademyRead:
+def _update_academy(
+    academy_id: int,
+    payload: AcademyUpdate,
+    db: Session,
+    current: Athlete,
+) -> AcademyRead:
     academy = db.get(Academy, academy_id)
     if academy is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Academia não encontrada")
+
+    # AUTORIZAÇÃO: admin pode editar qualquer academia. Manager só pode editar
+    # a SUA. (require_manager_or_admin no decorator já bloqueia teacher/athlete.)
+    _check_can_manage_academy(academy, current)
 
     data = payload.model_dump(exclude_unset=True)
 
@@ -192,9 +217,9 @@ def patch_academy(
     academy_id: int,
     payload: AcademyUpdate,
     db: Annotated[Session, Depends(get_db)],
-    _current: Annotated[Athlete, Depends(require_manager_or_admin)],
+    current: Annotated[Athlete, Depends(require_manager_or_admin)],
 ) -> AcademyRead:
-    return _update_academy(academy_id, payload, db)
+    return _update_academy(academy_id, payload, db, current)
 
 
 @router.put("/{academy_id}", response_model=AcademyRead)
@@ -202,9 +227,9 @@ def put_academy(
     academy_id: int,
     payload: AcademyUpdate,
     db: Annotated[Session, Depends(get_db)],
-    _current: Annotated[Athlete, Depends(require_manager_or_admin)],
+    current: Annotated[Athlete, Depends(require_manager_or_admin)],
 ) -> AcademyRead:
-    return _update_academy(academy_id, payload, db)
+    return _update_academy(academy_id, payload, db, current)
 
 
 # --------------------------------------------------------------
@@ -244,11 +269,13 @@ def add_teacher(
     academy_id: int,
     payload: AcademyTeacherLink,
     db: Annotated[Session, Depends(get_db)],
-    _current: Annotated[Athlete, Depends(require_manager_or_admin)],
+    current: Annotated[Athlete, Depends(require_manager_or_admin)],
 ) -> AcademyRead:
     academy = _load_academy_full(db, academy_id)
     if academy is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Academia não encontrada")
+
+    _check_can_manage_academy(academy, current)
 
     teacher = db.get(Athlete, payload.athlete_id)
     if teacher is None:
@@ -292,11 +319,13 @@ def remove_teacher(
     academy_id: int,
     athlete_id: int,
     db: Annotated[Session, Depends(get_db)],
-    _current: Annotated[Athlete, Depends(require_manager_or_admin)],
+    current: Annotated[Athlete, Depends(require_manager_or_admin)],
 ) -> None:
     academy = _load_academy_full(db, academy_id)
     if academy is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Academia não encontrada")
+
+    _check_can_manage_academy(academy, current)
 
     teacher = next((t for t in academy.teachers if t.id == athlete_id), None)
     if teacher is None:

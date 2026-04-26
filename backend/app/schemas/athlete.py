@@ -76,8 +76,10 @@ class AthleteCreate(AthleteBase):
 class AthleteUpdate(BaseModel):
     """Todos os campos opcionais pra PATCH parcial.
 
-    ATENÇÃO: `graduation` NÃO pode ser alterada por este endpoint.
-    Mudanças de graduação passam pelo fluxo de GraduationRequest (exceto admin).
+    ATENÇÃO: `graduation` NÃO pode ser alterada por este endpoint, NEM MESMO
+    POR ADMIN. Toda mudança de graduação passa pelo fluxo de GraduationRequest
+    (POST /api/graduation_requests → aprovação por admin). Isso garante
+    rastreabilidade total das mudanças (requested_by, reviewed_by, timestamps).
     """
     name: str | None = Field(None, min_length=1, max_length=255)
     email: EmailStr | None = None

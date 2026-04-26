@@ -1,8 +1,11 @@
 """CRUD de atletas com as regras de permissão atualizadas.
 
 Regras importantes:
-- `graduation` NÃO pode ser alterada diretamente via PATCH — tem endpoint separado
-  (POST /api/graduation_requests). Admin é exceção (pode alterar direto).
+- `graduation` NÃO pode ser alterada via PATCH /api/athletes/{id} por NINGUÉM,
+  nem mesmo admin. Toda mudança de graduação passa OBRIGATORIAMENTE pelo fluxo de
+  GraduationRequest (POST /api/graduation_requests + aprovação por admin).
+  Isso garante rastreabilidade total: requested_by, reviewed_by, timestamps,
+  notas de revisão. Sem atalhos.
 - Quem pode editar dados básicos: admin, o próprio atleta, manager da academia, professor individual.
 - Quem pode criar: teacher, manager, admin.
 - Quem pode remover: apenas admin (atletas são histórico da federação).
