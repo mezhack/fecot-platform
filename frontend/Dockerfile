@@ -49,9 +49,5 @@ USER nextjs
 
 EXPOSE 3000
 
-# Healthcheck simples
-HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost:3000 || exit 1
-
 # server.js é gerado pelo Next no modo standalone
 CMD ["node", "server.js"]
