@@ -4,16 +4,17 @@ import { Facebook, Instagram, Mail, Phone } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="bg-muted/30">
+      <div className="faixa-divider" aria-hidden="true" />
       <div className="container py-12 md:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Logo and Description */}
           <div className="space-y-4">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fecot2-fAjBQziUtfrAhPlp3RsyRALAz5TmqI.jpeg"
-              alt="FECOT Logo"
-              width={140}
-              height={50}
+              src="/logo-fecot.png"
+              alt="FECOT — Federação Centro-Oeste de Taekwondo"
+              width={77}
+              height={48}
               className="h-12 w-auto"
             />
             <p className="text-sm text-muted-foreground leading-relaxed">

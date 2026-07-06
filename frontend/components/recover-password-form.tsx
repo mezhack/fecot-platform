@@ -29,8 +29,10 @@ export function RecoverPasswordForm() {
         <Alert>
           <Info className="h-4 w-4" />
           <AlertDescription>
-            Procure seu <strong>professor</strong>, o <strong>gestor da sua academia</strong> ou a{" "}
-            <strong>administração da FECOT</strong> e solicite a redefinição da sua senha.
+            <p>
+              Procure seu <strong>professor</strong>, o <strong>gestor da sua academia</strong> ou a{" "}
+              <strong>administração da FECOT</strong> e solicite a redefinição da sua senha.
+            </p>
           </AlertDescription>
         </Alert>
         <ol className="space-y-3 text-sm text-muted-foreground list-decimal list-inside">

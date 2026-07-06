@@ -10,15 +10,15 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fecot2-fAjBQziUtfrAhPlp3RsyRALAz5TmqI.jpeg"
-            alt="FECOT Logo"
-            width={120}
-            height={40}
-            className="h-10 w-auto"
+            src="/logo-fecot.png"
+            alt="FECOT — Federação Centro-Oeste de Taekwondo"
+            width={77}
+            height={48}
+            className="h-12 w-auto"
           />
         </Link>
 
@@ -73,6 +73,8 @@ export function Header() {
           </nav>
         </div>
       )}
+
+      <div className="faixa-divider" aria-hidden="true" />
     </header>
   )
 }

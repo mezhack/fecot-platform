@@ -4,81 +4,85 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* FECOT brand colors - red primary, black/white neutrals */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(0.99 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  /* Identidade FECOT (ADR-008): verde e amarelo da bandeira do Brasil.
+     Verde bandeira = ação (primary); verde mata = painéis de marca (accent);
+     amarelo bandeira = destaque pontual (faixa); o vermelho da logo vive no destructive. */
+  --background: oklch(0.995 0.002 120);
+  --foreground: oklch(0.17 0.02 155);
+  --card: oklch(0.99 0.003 120);
+  --card-foreground: oklch(0.17 0.02 155);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 25);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.145 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.145 0 0);
-  --accent-foreground: oklch(1 0 0);
+  --popover-foreground: oklch(0.17 0.02 155);
+  --primary: oklch(0.5 0.14 152);
+  --primary-foreground: oklch(0.99 0.005 120);
+  --secondary: oklch(0.955 0.015 145);
+  --secondary-foreground: oklch(0.25 0.04 152);
+  --muted: oklch(0.96 0.008 130);
+  --muted-foreground: oklch(0.47 0.02 150);
+  --accent: oklch(0.3 0.055 156);
+  --accent-foreground: oklch(0.985 0.008 110);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.55 0.22 25);
-  --chart-1: oklch(0.55 0.22 25);
-  --chart-2: oklch(0.145 0 0);
-  --chart-3: oklch(0.7 0 0);
-  --chart-4: oklch(0.4 0 0);
-  --chart-5: oklch(0.85 0 0);
+  --border: oklch(0.905 0.012 140);
+  --input: oklch(0.905 0.012 140);
+  --ring: oklch(0.5 0.14 152);
+  --faixa: oklch(0.86 0.17 95);
+  --faixa-foreground: oklch(0.28 0.05 95);
+  --chart-1: oklch(0.55 0.15 152);
+  --chart-2: oklch(0.82 0.16 95);
+  --chart-3: oklch(0.42 0.12 265);
+  --chart-4: oklch(0.7 0.15 60);
+  --chart-5: oklch(0.55 0.02 150);
   --radius: 0.5rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.55 0.22 25);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.96 0 0);
-  --sidebar-accent-foreground: oklch(0.145 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.55 0.22 25);
+  --sidebar: oklch(0.26 0.05 156);
+  --sidebar-foreground: oklch(0.97 0.01 120);
+  --sidebar-primary: oklch(0.86 0.17 95);
+  --sidebar-primary-foreground: oklch(0.28 0.05 95);
+  --sidebar-accent: oklch(0.33 0.055 156);
+  --sidebar-accent-foreground: oklch(0.97 0.01 120);
+  --sidebar-border: oklch(0.34 0.05 156);
+  --sidebar-ring: oklch(0.86 0.17 95);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.18 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.55 0.22 25);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.25 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.6 0 0);
-  --accent: oklch(0.55 0.22 25);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
+  --background: oklch(0.15 0.018 155);
+  --foreground: oklch(0.97 0.008 120);
+  --card: oklch(0.19 0.022 155);
+  --card-foreground: oklch(0.97 0.008 120);
+  --popover: oklch(0.15 0.018 155);
+  --popover-foreground: oklch(0.97 0.008 120);
+  --primary: oklch(0.66 0.15 152);
+  --primary-foreground: oklch(0.16 0.03 155);
+  --secondary: oklch(0.24 0.03 155);
+  --secondary-foreground: oklch(0.97 0.008 120);
+  --muted: oklch(0.23 0.02 155);
+  --muted-foreground: oklch(0.68 0.015 140);
+  --accent: oklch(0.27 0.05 156);
+  --accent-foreground: oklch(0.97 0.008 120);
+  --destructive: oklch(0.5 0.2 27);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: oklch(0.55 0.22 25);
-  --chart-1: oklch(0.55 0.22 25);
-  --chart-2: oklch(0.985 0 0);
-  --chart-3: oklch(0.7 0 0);
-  --chart-4: oklch(0.4 0 0);
-  --chart-5: oklch(0.3 0 0);
-  --sidebar: oklch(0.18 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.55 0.22 25);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.25 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.25 0 0);
-  --sidebar-ring: oklch(0.55 0.22 25);
+  --border: oklch(0.27 0.02 155);
+  --input: oklch(0.27 0.02 155);
+  --ring: oklch(0.66 0.15 152);
+  --faixa: oklch(0.84 0.16 95);
+  --faixa-foreground: oklch(0.25 0.05 95);
+  --chart-1: oklch(0.66 0.15 152);
+  --chart-2: oklch(0.84 0.16 95);
+  --chart-3: oklch(0.58 0.12 265);
+  --chart-4: oklch(0.72 0.15 60);
+  --chart-5: oklch(0.65 0.02 150);
+  --sidebar: oklch(0.2 0.04 156);
+  --sidebar-foreground: oklch(0.97 0.01 120);
+  --sidebar-primary: oklch(0.84 0.16 95);
+  --sidebar-primary-foreground: oklch(0.25 0.05 95);
+  --sidebar-accent: oklch(0.27 0.05 156);
+  --sidebar-accent-foreground: oklch(0.97 0.01 120);
+  --sidebar-border: oklch(0.28 0.045 156);
+  --sidebar-ring: oklch(0.84 0.16 95);
 }
 
 @theme inline {
-  --font-sans: "Geist", "Geist Fallback";
-  --font-mono: "Geist Mono", "Geist Mono Fallback";
-  /* Using the correct Bebas Neue variable from layout.tsx */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bebas);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -99,6 +103,8 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-faixa: var(--faixa);
+  --color-faixa-foreground: var(--faixa-foreground);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -116,6 +122,21 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer components {
+  /* Assinatura da marca: a "faixa amarela ponta verde" (7º Gub) — as cores da
+     bandeira também são graduações do taekwondo. Usada como divisor de marca. */
+  .faixa-divider {
+    height: 4px;
+    background: linear-gradient(
+      to right,
+      var(--faixa) 0%,
+      var(--faixa) 82%,
+      var(--primary) 82%,
+      var(--primary) 100%
+    );
+  }
 }
 
 @layer base {

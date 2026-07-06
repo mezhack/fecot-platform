@@ -80,6 +80,9 @@ Convenções em vigor:
 - **Navegação por role**: `athlete` → `/perfil` apenas; `teacher`/`academy_manager`/`admin`
   → `/dashboard`. Sem middleware de rota — a proteção real é do backend
   (ver [constitution § II](../constitution.md)).
+- **Identidade visual**: paleta verde/amarela da bandeira via tokens em `app/globals.css`,
+  logo local em `public/logo-fecot.png` e divisor de marca `.faixa-divider`
+  (ver [ADR-008](../decisions/ADR-008-identidade-visual-verde-amarela.md)).
 
 ## Fluxo de uma requisição autenticada
 

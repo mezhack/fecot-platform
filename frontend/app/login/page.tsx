@@ -13,26 +13,28 @@ export default function LoginPage() {
           {/* Left side - Branding */}
           <div className="hidden lg:flex flex-col justify-center items-center bg-accent text-accent-foreground p-12 rounded-lg">
             <div className="max-w-md space-y-6 text-center">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fecot2-fAjBQziUtfrAhPlp3RsyRALAz5TmqI.jpeg"
-                alt="FECOT Logo"
-                width={300}
-                height={100}
-                className="mx-auto"
-              />
+              <div className="mx-auto w-fit rounded-xl bg-white p-4 shadow-sm">
+                <Image
+                  src="/logo-fecot.png"
+                  alt="FECOT — Federação Centro-Oeste de Taekwondo"
+                  width={240}
+                  height={150}
+                  className="mx-auto"
+                />
+              </div>
               <h1 className="font-display text-4xl font-bold tracking-tight">Bem-vindo à FECOT</h1>
               <p className="text-lg text-accent-foreground/80">Federação Centro-Oeste de Taekwondo</p>
               <div className="pt-6 space-y-4 text-left">
                 <div className="flex items-start gap-3">
-                  <div className="h-2 w-2 rounded-full bg-primary mt-2" />
+                  <div className="h-2 w-2 rounded-full bg-faixa mt-2" />
                   <p className="text-sm text-accent-foreground/70">Gerencie atletas e academias em um só lugar</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="h-2 w-2 rounded-full bg-primary mt-2" />
+                  <div className="h-2 w-2 rounded-full bg-faixa mt-2" />
                   <p className="text-sm text-accent-foreground/70">Acompanhe graduações e progressos</p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="h-2 w-2 rounded-full bg-primary mt-2" />
+                  <div className="h-2 w-2 rounded-full bg-faixa mt-2" />
                   <p className="text-sm text-accent-foreground/70">Acesse informações de eventos e competições</p>
                 </div>
               </div>

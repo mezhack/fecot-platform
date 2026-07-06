@@ -32,26 +32,34 @@ export function DashboardSidebar({ open, onClose }: DashboardSidebarProps) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 border-r bg-card transition-transform duration-300 lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-64 border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-transform duration-300 lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex h-full flex-col">
           {/* Logo */}
-          <div className="flex h-16 items-center justify-between border-b px-6">
+          <div className="flex h-16 items-center justify-between px-4">
             <Link href="/dashboard" className="flex items-center gap-2">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/fecot2-fAjBQziUtfrAhPlp3RsyRALAz5TmqI.jpeg"
-                alt="FECOT Logo"
-                width={100}
-                height={33}
-                className="h-8 w-auto"
-              />
+              <span className="rounded-md bg-white px-2 py-1">
+                <Image
+                  src="/logo-fecot.png"
+                  alt="FECOT — Federação Centro-Oeste de Taekwondo"
+                  width={51}
+                  height={32}
+                  className="h-8 w-auto"
+                />
+              </span>
             </Link>
-            <Button variant="ghost" size="icon" className="lg:hidden" onClick={onClose}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="lg:hidden text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              onClick={onClose}
+            >
               <X className="h-5 w-5" />
             </Button>
           </div>
+          <div className="faixa-divider" aria-hidden="true" />
 
           {/* Navigation */}
           <nav className="flex-1 space-y-1 p-4">
@@ -64,8 +72,8 @@ export function DashboardSidebar({ open, onClose }: DashboardSidebarProps) {
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                      ? "bg-sidebar-primary text-sidebar-primary-foreground"
+                      : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                   )}
                   onClick={onClose}
                 >
@@ -77,10 +85,10 @@ export function DashboardSidebar({ open, onClose }: DashboardSidebarProps) {
           </nav>
 
           {/* Footer */}
-          <div className="border-t p-4">
-            <div className="rounded-lg bg-muted p-3 text-sm">
+          <div className="border-t border-sidebar-border p-4">
+            <div className="rounded-lg bg-sidebar-accent p-3 text-sm">
               <p className="font-medium">FECOT</p>
-              <p className="text-xs text-muted-foreground">Federação Centro-Oeste de Taekwondo</p>
+              <p className="text-xs text-sidebar-foreground/70">Federação Centro-Oeste de Taekwondo</p>
             </div>
           </div>
         </div>

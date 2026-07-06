@@ -5,6 +5,7 @@ import type React from "react"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { LayoutDashboard, LogOut } from "lucide-react"
@@ -40,8 +41,14 @@ export function AuthLayout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-          <Link href={canAccessDashboard ? "/dashboard" : "/perfil"} className="font-semibold">
-            FECOT Platform
+          <Link href={canAccessDashboard ? "/dashboard" : "/perfil"} className="flex items-center">
+            <Image
+              src="/logo-fecot.png"
+              alt="FECOT — Federação Centro-Oeste de Taekwondo"
+              width={51}
+              height={32}
+              className="h-8 w-auto"
+            />
           </Link>
           <div className="flex items-center gap-2">
             <div className="hidden md:flex items-center gap-2 text-sm">

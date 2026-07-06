@@ -8,6 +8,9 @@ export function HeroSection() {
 
       <div className="container relative py-24 md:py-32 lg:py-40">
         <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-faixa mb-4">
+            Filiada à Liga Nacional de Taekwondo
+          </p>
           <h1 className="font-[family-name:var(--font-bebas)] text-5xl md:text-6xl lg:text-7xl tracking-tight text-balance mb-6">
             Federação Centro-Oeste de Taekwondo
           </h1>
@@ -15,7 +18,7 @@ export function HeroSection() {
             Promovendo excelência, disciplina e espírito esportivo através do Taekwondo na região Centro-Oeste do Brasil
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary">
+            <Button asChild size="lg" className="bg-faixa text-faixa-foreground hover:bg-faixa/90">
               <Link href="#academias">Encontrar Academia</Link>
             </Button>
             <Button

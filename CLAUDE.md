@@ -27,6 +27,8 @@ spec e README **no mesmo commit**.
   `frontend/lib/graduations.ts` — **sempre alterar as duas juntas** (ADR-007).
 - Mudou contrato da API → atualizar o cliente tipado `frontend/lib/api.ts` no mesmo commit.
 - Todo acesso HTTP do frontend passa por `lib/api.ts` — sem `fetch` solto em componentes.
+- Identidade visual (ADR-008): cores só via tokens em `frontend/app/globals.css`; amarelo
+  apenas pelo token `faixa` e só em pontos de decisão; logo em `public/logo-fecot.png`.
 - Mensagens de erro da API (`detail`) em português e acionáveis.
 - Regra de negócio nova exige teste em `backend/tests/` — a suíte (105 testes) passa
   sempre, zero regressões.
