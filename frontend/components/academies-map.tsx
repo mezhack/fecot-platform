@@ -1,59 +1,25 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
 import { MapPin, Phone, Mail } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-// Mock data - will be replaced with real data from backend
-const academies = [
-  {
-    id: 1,
-    name: "Academia Dragão Vermelho",
-    city: "Goiânia",
-    state: "GO",
-    responsible: "Mestre João Silva",
-    phone: "(62) 99999-9999",
-    email: "dragao@email.com",
-    lat: -16.6869,
-    lng: -49.2648,
-  },
-  {
-    id: 2,
-    name: "Centro de Treinamento Tigre",
-    city: "Brasília",
-    state: "DF",
-    responsible: "Mestre Maria Santos",
-    phone: "(61) 98888-8888",
-    email: "tigre@email.com",
-    lat: -15.7801,
-    lng: -47.9292,
-  },
-  {
-    id: 3,
-    name: "Academia Leão Dourado",
-    city: "Cuiabá",
-    state: "MT",
-    responsible: "Mestre Pedro Costa",
-    phone: "(65) 97777-7777",
-    email: "leao@email.com",
-    lat: -15.6014,
-    lng: -56.0979,
-  },
-  {
-    id: 4,
-    name: "Escola de Taekwondo Águia",
-    city: "Campo Grande",
-    state: "MS",
-    responsible: "Mestre Ana Oliveira",
-    phone: "(67) 96666-6666",
-    email: "aguia@email.com",
-    lat: -20.4697,
-    lng: -54.6201,
-  },
-]
+import { api, type Academy } from "@/lib/api"
 
 export function AcademiesMap() {
+  const [academies, setAcademies] = useState<Academy[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
   const [selectedAcademy, setSelectedAcademy] = useState<number | null>(null)
+
+  useEffect(() => {
+    api
+      .publicMapAcademies()
+      .then(setAcademies)
+      .catch(() => setError(true))
+      .finally(() => setLoading(false))
+  }, [])
 
   return (
     <section id="academias" className="py-20 md:py-28 bg-muted/30">
@@ -76,7 +42,7 @@ export function AcademiesMap() {
                 <p className="text-muted-foreground">
                   Mapa interativo das academias
                   <br />
-                  <span className="text-sm">(Integração com Google Maps)</span>
+                  <span className="text-sm">(em breve)</span>
                 </p>
               </div>
             </div>
@@ -84,39 +50,73 @@ export function AcademiesMap() {
 
           {/* Academies List */}
           <div className="space-y-4">
-            {academies.map((academy) => (
-              <Card
-                key={academy.id}
-                className={`cursor-pointer transition-all hover:shadow-md ${
-                  selectedAcademy === academy.id ? "ring-2 ring-primary" : ""
-                }`}
-                onClick={() => setSelectedAcademy(academy.id)}
-              >
-                <CardHeader>
-                  <CardTitle className="flex items-start justify-between gap-4">
-                    <span className="text-lg">{academy.name}</span>
-                    <span className="text-sm font-normal text-muted-foreground whitespace-nowrap">
-                      {academy.city} - {academy.state}
-                    </span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm">
-                    <MapPin className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Responsável:</span>
-                    <span className="font-medium">{academy.responsible}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Phone className="h-4 w-4 text-muted-foreground" />
-                    <span>{academy.phone}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm">
-                    <Mail className="h-4 w-4 text-muted-foreground" />
-                    <span>{academy.email}</span>
-                  </div>
+            {loading && (
+              <>
+                <Skeleton className="h-44 w-full" />
+                <Skeleton className="h-44 w-full" />
+                <Skeleton className="h-44 w-full" />
+              </>
+            )}
+
+            {!loading && error && (
+              <Card>
+                <CardContent className="py-8 text-center text-muted-foreground">
+                  Não foi possível carregar as academias. Tente novamente mais tarde.
                 </CardContent>
               </Card>
-            ))}
+            )}
+
+            {!loading && !error && academies.length === 0 && (
+              <Card>
+                <CardContent className="py-8 text-center text-muted-foreground">
+                  Nenhuma academia com localização cadastrada até o momento.
+                </CardContent>
+              </Card>
+            )}
+
+            {!loading &&
+              !error &&
+              academies.map((academy) => (
+                <Card
+                  key={academy.id}
+                  className={`cursor-pointer transition-all hover:shadow-md ${
+                    selectedAcademy === academy.id ? "ring-2 ring-primary" : ""
+                  }`}
+                  onClick={() => setSelectedAcademy(academy.id)}
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-start justify-between gap-4">
+                      <span className="text-lg">{academy.name}</span>
+                      {(academy.city || academy.state) && (
+                        <span className="text-sm font-normal text-muted-foreground whitespace-nowrap">
+                          {[academy.city, academy.state].filter(Boolean).join(" - ")}
+                        </span>
+                      )}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-2">
+                    {academy.manager_name && (
+                      <div className="flex items-center gap-2 text-sm">
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
+                        <span className="text-muted-foreground">Responsável:</span>
+                        <span className="font-medium">{academy.manager_name}</span>
+                      </div>
+                    )}
+                    {academy.phone && (
+                      <div className="flex items-center gap-2 text-sm">
+                        <Phone className="h-4 w-4 text-muted-foreground" />
+                        <span>{academy.phone}</span>
+                      </div>
+                    )}
+                    {academy.email && (
+                      <div className="flex items-center gap-2 text-sm">
+                        <Mail className="h-4 w-4 text-muted-foreground" />
+                        <span>{academy.email}</span>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ Fluxo:
     3. Admin aprova (POST .../approve) → aplica a nova graduação no atleta
        ou rejeita (POST .../reject) → apenas registra
 """
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -187,7 +187,7 @@ def approve_request(
 
     req.status = GraduationRequestStatus.approved
     req.reviewed_by_id = current.id
-    req.reviewed_at = datetime.utcnow()
+    req.reviewed_at = datetime.now(UTC)
     req.review_notes = payload.review_notes
 
     db.commit()
@@ -221,7 +221,7 @@ def reject_request(
 
     req.status = GraduationRequestStatus.rejected
     req.reviewed_by_id = current.id
-    req.reviewed_at = datetime.utcnow()
+    req.reviewed_at = datetime.now(UTC)
     req.review_notes = payload.review_notes
 
     db.commit()

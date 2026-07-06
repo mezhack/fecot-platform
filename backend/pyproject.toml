@@ -67,8 +67,6 @@ filterwarnings = [
     # Deprecation interna do Starlette (HTTP_xxx -> outro nome)
     "ignore:'HTTP_413_REQUEST_ENTITY_TOO_LARGE' is deprecated:DeprecationWarning",
     "ignore:'HTTP_422_UNPROCESSABLE_ENTITY' is deprecated:DeprecationWarning",
-    # datetime.utcnow() — corrigir no app eventualmente
-    "ignore:datetime.datetime.utcnow.*:DeprecationWarning",
 ]
 
 [tool.coverage.run]

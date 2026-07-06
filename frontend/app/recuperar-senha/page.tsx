@@ -21,19 +21,19 @@ export default function RecoverPasswordPage() {
                 className="mx-auto"
               />
               <h1 className="font-display text-4xl font-bold tracking-tight">Recuperação de Senha</h1>
-              <p className="text-lg text-accent-foreground/80">Enviaremos instruções para redefinir sua senha</p>
+              <p className="text-lg text-accent-foreground/80">Sua academia redefine sua senha em poucos minutos</p>
               <div className="pt-6 space-y-4 text-left">
                 <div className="flex items-start gap-3">
                   <div className="h-2 w-2 rounded-full bg-primary mt-2" />
-                  <p className="text-sm text-accent-foreground/70">Digite seu email cadastrado</p>
+                  <p className="text-sm text-accent-foreground/70">Procure seu professor ou o gestor da sua academia</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="h-2 w-2 rounded-full bg-primary mt-2" />
-                  <p className="text-sm text-accent-foreground/70">Receba um link de recuperação por email</p>
+                  <p className="text-sm text-accent-foreground/70">Ele define uma senha temporária para você</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="h-2 w-2 rounded-full bg-primary mt-2" />
-                  <p className="text-sm text-accent-foreground/70">Crie uma nova senha segura</p>
+                  <p className="text-sm text-accent-foreground/70">Entre e troque a senha em Meu Perfil</p>
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function RecoverPasswordPage() {
             <div className="w-full max-w-md space-y-6">
               <div className="space-y-2 text-center lg:text-left">
                 <h2 className="font-display text-3xl font-bold tracking-tight">Recuperar Senha</h2>
-                <p className="text-muted-foreground">Digite seu email para receber instruções</p>
+                <p className="text-muted-foreground">Veja como redefinir seu acesso</p>
               </div>
 
               <RecoverPasswordForm />

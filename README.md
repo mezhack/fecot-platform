@@ -5,6 +5,10 @@ Plataforma de gerenciamento de atletas e academias da **Federação Centro-Oeste
 - **Frontend**: Next.js 16 + React 19 + TypeScript + Tailwind + shadcn/ui
 - **Backend**: Python 3.12 + FastAPI + SQLAlchemy 2 + Alembic + PostgreSQL + JWT
 
+> **Documentação completa (padrão SDD)** em [`docs/`](./docs/README.md): especificações
+> funcionais por domínio, arquitetura, contrato de API, segurança e decisões arquiteturais
+> (ADRs). As specs são a fonte de verdade do comportamento do sistema.
+
 ---
 
 ## Modelo de domínio
@@ -41,7 +45,7 @@ Do iniciante ao mestre: `10º Gub`, `9º Gub`, ..., `1º Gub`, `1º Dan`, `2º D
 - O manager de uma academia precisa ter role `academy_manager` ou `admin` e graduação ≥ 1º Dan
 - Um professor pode ser teacher em várias academias (relação N:N)
 - Um atleta estuda em uma academia (`home_academy_id`) e tem um professor individual (`professor_id`)
-- A graduação de um atleta **não pode ser editada diretamente** — passa pelo fluxo de GraduationRequest (exceto por admin)
+- A graduação de um atleta **não pode ser editada diretamente por ninguém, nem admin** — toda mudança passa pelo fluxo de GraduationRequest
 - Apenas o professor individual, o manager da academia, ou admin podem solicitar mudança de graduação de um atleta
 - Apenas admin pode aprovar ou rejeitar solicitações de graduação
 - Apenas admin pode criar ou remover academias
@@ -221,7 +225,7 @@ A experiência do usuário é **diferente conforme o role**:
 - Tudo acima + criar/editar/deletar academias
 - **Aprovar ou rejeitar solicitações de graduação** (único papel que pode)
 - Remover atletas
-- Alterar `role` e `graduation` diretamente (sem passar pelo fluxo)
+- Alterar `role` diretamente. `graduation` **não** — nem admin edita direto; ele cria a solicitação e a aprova (o fluxo preserva o rastro)
 
 ## Modelo mental: `/perfil` vs `/dashboard/atletas/[id]/editar`
 
@@ -247,22 +251,6 @@ Documentação completa em [`backend/tests/README.md`](./backend/tests/README.md
 ---
 
 ## Deploy em produção
-
-Veja [`DEPLOY.md`](./DEPLOY.md) para o guia completo de deploy na Hostinger VPS.
-
----
-
-## Troubleshooting
-
-**"Failed to fetch Inter/Bebas Neue from Google Fonts" durante `npm run build`**
-Ambiente sem acesso ao Google Fonts. Soluções: rodar build em máquina com internet aberta, ou usar `next/font/local`.
-
-**CORS error**
-`CORS_ORIGINS` no `backend/.env` precisa incluir exatamente a URL do frontend (com protocolo, sem barra final).
-
-**"Erro ao conectar com o servidor" no login**
-Verifique `NEXT_PUBLIC_API_URL` no `frontend/.env.local` e confirme que a API responde: `curl $URL/api/health`.
-
 
 Veja [`DEPLOY.md`](./DEPLOY.md) para o guia completo de deploy na Hostinger VPS.
 
