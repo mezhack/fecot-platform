@@ -15,6 +15,7 @@ valer quando outro ADR a **substitui** explicitamente (status `Substituído por 
 | [006](./ADR-006-avatares-disco-local-webp.md) | Avatares em disco local, re-encodados para WebP | Aceito |
 | [007](./ADR-007-graduacoes-strings-canonicas.md) | Graduações como strings canônicas espelhadas front/back | Aceito |
 | [008](./ADR-008-identidade-visual-verde-amarela.md) | Identidade visual verde/amarela (bandeira) + logo do tigre | Aceito |
+| [009](./ADR-009-google-maps-javascript-api.md) | Google Maps JavaScript API (via script, sem npm) para o mapa de academias | Aceito |
 
 ## Quando escrever um ADR
 

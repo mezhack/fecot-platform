@@ -16,9 +16,12 @@ RUN npm ci --no-audit --no-fund --legacy-peer-deps
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Build-arg pra a URL da API (vira variável NEXT_PUBLIC_*  embutida no bundle)
+# Build-args das variáveis NEXT_PUBLIC_* (ficam embutidas no bundle no build)
 ARG NEXT_PUBLIC_API_URL=http://localhost:3002
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+
+ARG NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+ENV NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=$NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .

@@ -93,6 +93,8 @@ fecot-platform/
 ```bash
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env.local
+# Opcional: preencha NEXT_PUBLIC_GOOGLE_MAPS_API_KEY no frontend/.env.local
+# para habilitar o mapa de academias (ver ADR-009)
 
 docker compose up --build
 

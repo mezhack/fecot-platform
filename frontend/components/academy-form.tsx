@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle, Save } from "lucide-react"
 
+import { AcademyLocationPicker } from "@/components/academy-location-picker"
 import { api, ApiError, type Academy, type Athlete } from "@/lib/api"
 
 interface AcademyFormProps {
@@ -100,6 +101,15 @@ export function AcademyForm({ academy }: AcademyFormProps) {
 
   const update = (field: keyof typeof formData, value: string) =>
     setFormData((prev) => ({ ...prev, [field]: value }))
+
+  // Campo vazio ou meio digitado ("-", "-15.") não vira coordenada no mapa
+  const toCoord = (value: string) => {
+    const parsed = Number(value)
+    return value.trim() === "" || !Number.isFinite(parsed) ? null : parsed
+  }
+
+  const handleLocationChange = (lat: number, lng: number) =>
+    setFormData((prev) => ({ ...prev, latitude: String(lat), longitude: String(lng) }))
 
   return (
     <form onSubmit={handleSubmit}>
@@ -253,6 +263,15 @@ export function AcademyForm({ academy }: AcademyFormProps) {
                 value={formData.longitude}
                 onChange={(e) => update("longitude", e.target.value)}
                 disabled={isLoading}
+              />
+            </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <Label>Localização no mapa</Label>
+              <AcademyLocationPicker
+                latitude={toCoord(formData.latitude)}
+                longitude={toCoord(formData.longitude)}
+                onLocationChange={handleLocationChange}
               />
             </div>
           </div>

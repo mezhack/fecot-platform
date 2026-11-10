@@ -62,9 +62,9 @@ esperado) até que seja resolvida — nunca corrija silenciosamente.
 
 ## Melhorias futuras registradas (não são divergências)
 
-- **Mapa interativo na landing** — a seção de academias hoje mostra a lista real vinda da
-  API com um placeholder visual no lugar do mapa; a renderização em mapa de verdade
-  (Leaflet/Google Maps, usando as coordenadas já expostas pelo endpoint) fica como evolução
-  planejada da [spec 003](./specs/003-gestao-de-academias.md).
+- **Geocodificação no cadastro de academias** — a posição hoje é definida por clique no
+  mapa ou digitada; converter CEP/endereço em coordenadas automaticamente exigiria a
+  Geocoding API do Google (cota e custo próprios) e ficou fora da
+  [spec 003](./specs/003-gestao-de-academias.md).
 - **Recuperação de senha self-service** — exigiria infraestrutura de email; o fluxo atual
   (responsável redefine) está documentado na [spec 001](./specs/001-autenticacao-e-conta.md).

@@ -246,11 +246,20 @@ cd /home/fecot/fecot-platform/frontend
 
 npm install
 
-# Cria .env.local com a URL pública da API
+# Cria .env.local com a URL pública da API e a chave do Google Maps
 cat > .env.local <<'EOF'
 NEXT_PUBLIC_API_URL=https://api.fecot.com.br
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=sua-chave-aqui
 EOF
 ```
+
+> **Google Maps (ADR-009)** — a chave é embutida no bundle **durante o build**: mudou a
+> chave, precisa rodar `npm run build` de novo. Se o deploy for por imagem Docker, passe
+> `--build-arg NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=...`. No Google Cloud, habilite a
+> "Maps JavaScript API" e restrinja a chave por referenciador HTTP ao domínio do site —
+> sem restrição, qualquer um pode consumir a cota do projeto. Sem a chave o site sobe
+> normalmente, apenas sem o mapa (a lista de academias e os links de rota continuam
+> funcionando).
 
 ### 5.2 Build de produção
 
